@@ -1,6 +1,7 @@
 # next-portfolio
 Production: https://next-portfolio-topaz.vercel.app/
 
+A small server-rendered React blog app built with Next.js.
 
 ## Build & Run Instructions
 
