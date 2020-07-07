@@ -207,6 +207,52 @@ function Layout({ children, pageTitle, docTitle }) {
           border-bottom-color: hsla(40, 85%, 75%, 1);
         }
       `}</style>
+
+      <style jsx global>{`
+        body {
+          padding: 0;
+          margin: 0;
+          font-family: "Barlow", sans-serif;
+          color: #333;
+          font-size: 18px;
+        }
+
+        a {
+          text-decoration: none;
+          color: #555;
+        }
+
+        a:hover {
+          text-decoration: underline;
+          color: #333;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+          font-weight: 700;
+          letter-spacing: -0.04em;
+        }
+
+        p,
+        li {
+          line-height: 1.6;
+        }
+
+        .o-main {
+          max-width: 80ch;
+        }
+
+        .o-main a {
+          text-decoration: underline;
+        }
+
+        .o-main a:hover {
+          text-decoration: none;
+        }
+      `}</style>
     </div>
   );
 }
