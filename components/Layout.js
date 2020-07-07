@@ -1,10 +1,9 @@
 import Link from "next/link";
 import Head from "next/head";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 import NProgress from "nprogress";
 
 Router.onRouteChangeStart = (url) => {
-  console.log(url);
   NProgress.start();
 };
 
@@ -12,6 +11,8 @@ Router.onRouteChangeComplete = () => NProgress.done();
 Router.onRouteChangeError = () => NProgress.done();
 
 function Layout({ children, pageTitle, docTitle }) {
+  const router = useRouter();
+
   return (
     <div className="o-page">
       <Head>
@@ -19,7 +20,14 @@ function Layout({ children, pageTitle, docTitle }) {
       </Head>
       <header>
         <h1>
-          Next Portfolio <span>.</span>
+          {router.pathname === "/" ? (
+            "Next Portfolio "
+          ) : (
+            <Link href="/">
+              <a>Next Portfolio</a>
+            </Link>
+          )}
+          <span>.</span>
         </h1>
         <nav>
           <Link href="/">
@@ -42,7 +50,11 @@ function Layout({ children, pageTitle, docTitle }) {
         {children}
       </main>
       <footer>
-        <span>Copyright reserved &copy; {new Date().getFullYear()}</span>
+        <span>Ahmed Hosna &copy; {new Date().getFullYear()}</span>
+        <p>
+          Very thanks to Owen Earl for the great font:{" "}
+          <a href="https://fonts.google.com/specimen/Jost?query=Jost">Jost</a>.
+        </p>
       </footer>
       <style jsx>{`
         .o-page {
@@ -56,7 +68,6 @@ function Layout({ children, pageTitle, docTitle }) {
           padding: 1em;
           position: relative;
           padding-left: 8rem;
-          color: #333;
         }
 
         .c-page-title {
@@ -103,6 +114,7 @@ function Layout({ children, pageTitle, docTitle }) {
           align-items: center;
           justify-content: space-between;
           z-index: 1;
+          border-bottom: 1px solid #f5d189;
         }
 
         header h1 {
@@ -110,6 +122,7 @@ function Layout({ children, pageTitle, docTitle }) {
           font-size: 28px;
           position: relative;
           display: flex;
+          font-family: "Jost", sans-serif;
         }
 
         header h1:before {
@@ -127,30 +140,46 @@ function Layout({ children, pageTitle, docTitle }) {
 
         header h1 span {
           color: hsl(40, 84%, 75%);
+          font-size: 140%;
+          position: absolute;
+          right: -8px;
+          line-height: 1;
+          bottom: 0;
+        }
+
+        header,
+        footer {
+          padding-right: 1em;
+          padding-left: 1em;
+          background: hsla(40, 100%, 99%, 1);
         }
 
         footer {
           margin-top: auto;
           text-align: center;
+          border-top: 1px solid #f5d189;
+          padding-top: 1em;
+          padding-bottom: 1em;
+          font-size: 16px;
         }
 
-        header,
-        footer {
-          padding: 1em;
-          background: #fff7da;
+        footer p {
+          margin: 0.25rem 0 0;
+          font-size: 13px;
+          font-weight: 500;
         }
 
         nav a {
-          padding: 0.5em 1em;
-          border-bottom: 1px solid hsl(0, 0%, 50%);
+          padding: 1.3em 1em;
+          border-bottom: 4px solid transparent;
           text-decoration: none;
           font-weight: 500;
           font-size: 17px;
+          display: inline-block;
         }
 
         nav a:hover {
-          background: hsla(40, 85%, 75%, 1);
-          border-bottom-color: #212121;
+          border-bottom-color: hsla(40, 85%, 75%, 1);
         }
       `}</style>
     </div>
