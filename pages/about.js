@@ -91,6 +91,7 @@ About.getInitialProps = async function () {
   const res = await fetch("https://api.github.com/users/ahmedhosna95");
   const data = await res.json();
   const statusCode = res.status > 200 ? res.status : false;
+
   return { user: data, statusCode };
 };
 
