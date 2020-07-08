@@ -168,6 +168,7 @@ function Layout({ children, pageTitle, docTitle }) {
           font-size: 16px;
           z-index: 1;
           position: relative;
+          overflow: hidden;
         }
 
         footer:before {
